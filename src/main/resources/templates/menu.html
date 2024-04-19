@@ -1,0 +1,72 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar position-relative">
+        <div class="help-bt">
+
+        </div>
+        <div class="multinav">
+            <div class="multinav-scroll" style="height: 100%;">
+                <!-- sidebar menu-->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="">
+                        <a th:href="@{/}">
+                            <i data-feather="monitor"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a th:href="@{/agences}">
+                            <i data-feather="calendar"></i>
+                            <span>Agences</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a th:href="@{/clients}">
+                            <i data-feather="package"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a th:href="@{/utilisateurs}">
+                            <i data-feather="users"></i>
+                            <span>Utilisateur</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i data-feather="activity"></i>
+                            <span>Abattement</span>
+                            <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                      </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a th:href="@{/abattement}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Nouveau</a></li>
+                            <li><a th:href="@{/abattements}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Liste</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a th:href="@{/parametres}">
+                            <i data-feather="inbox"></i>
+                            <span>Paramètres</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a th:href="@{/garanties}">
+                          <i data-feather="inbox"></i>
+                          <span>Garanties</span>
+                        </a>					
+                    </li>				 
+                </ul>
+
+                <!--div-- class="sidebar-widgets">
+
+                  <div class="copyright text-center m-25">
+                      <p><strong class="d-block">Rhythm Admin Dashboard</strong> © <script>document.write(new Date().getFullYear())</script> All Rights Reserved</p>
+                  </div>
+                </div-->
+            </div>
+        </div>
+    </section>
+</aside>

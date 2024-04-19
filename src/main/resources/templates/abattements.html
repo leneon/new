@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/images/favicon.ico">
+
+    <title>Project - Abattements</title>
+  
+	<!-- Vendors Style-->	  
+	<!-- Style-->  
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<!-- <link rel="stylesheet" href="css/color_theme.css"> -->
+	<!-- <link rel="stylesheet" href="css/skin_color.css"> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head> 
+<body class="hold-transition light-skin sidebar-mini theme-success fixed" ng-controller="abattementController">
+	
+<div class="wrapper">
+	<div id="loader"></div>
+
+  <header class="main-header">
+	<div class="d-flex align-items-center logo-box justify-content-start">	
+		<!-- Logo -->
+		<a href="index.html" class="logo">
+		  <!-- logo-->
+			<div class="logo-lg">
+				<span class="light-logo"><img src="/images/logo.png" alt="logo"></span>
+				<span class="dark-logo"><img src="/images/logo.png" alt="logo"></span>
+			</div>
+		</a>	
+	</div>  
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+	  <div class="app-menu">
+		<ul class="header-megamenu nav">
+			<li class="btn-group nav-item">
+				<a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light" data-toggle="push-menu" role="button">
+					<i data-feather="align-left"></i>
+			    </a>
+			</li>
+
+		</ul> 
+	  </div>
+		
+      <div class="navbar-custom-menu r-side">
+        <ul class="nav navbar-nav">	
+
+	      <!-- User Account-->
+          <li class="dropdown user user-menu">
+            <a href="#" class="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent py-0 no-shadow" data-bs-toggle="dropdown" title="User">
+				<div class="d-flex pt-5">
+					<div class="text-end me-10">
+						<p class="pt-5 fs-14 mb-0 fw-700 text-primary">Johen Doe</p>
+						<small class="fs-10 mb-0 text-uppercase text-mute">Admin</small>
+					</div>
+					<img src="/images/avatar/avatar-1.png" class="avatar rounded-10 bg-primary-light h-40 w-40" alt="" />
+				</div>
+            </a>
+            <ul class="dropdown-menu animated flipInX">
+              <li class="user-body">
+				 <a class="dropdown-item" href="#"><i class="ti-user text-muted me-2"></i> Profile</a>
+				 <a class="dropdown-item" href="#"><i class="ti-wallet text-muted me-2"></i> My Wallet</a>
+				 <a class="dropdown-item" href="#"><i class="ti-settings text-muted me-2"></i> Settings</a>
+				 <div class="dropdown-divider"></div>
+				 <a class="dropdown-item" href="#"><i class="ti-lock text-muted me-2"></i> Logout</a>
+              </li>
+            </ul>
+          </li>	
+			
+        </ul>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar position-relative">
+		<div class="help-bt">
+			
+		</div>
+	  	<div class="multinav">
+		  <div class="multinav-scroll" style="height: 100%;">
+			  <!-- sidebar menu-->
+			  <ul class="sidebar-menu" data-widget="tree">			
+				<li class="">
+				  <a th:href="@{/}">
+					<i data-feather="monitor"></i>
+					<span>Dashboard</span>					
+				  </a>
+				</li>
+				<li class="">
+				  <a th:href="@{/agences}">
+					<i data-feather="calendar"></i>
+					<span>Agences</span>
+				  </a>
+				</li>
+				<li class="">
+					<a th:href="@{/clients}">
+					  <i data-feather="package"></i>
+					  <span>Clients</span>
+					</a>
+				  </li>			
+				<li class="">
+				  <a th:href="@{/utilisateurs}">
+					<i data-feather="users"></i>
+					<span>Utilisateurs</span>					
+				  </a>				 
+				</li>				
+				<li class="treeview active">
+                    <a href="#">
+                      <i data-feather="activity"></i>
+                      <span>Abattement</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu">
+                      <li><a th:href="@{/abattement}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Nouveau</a></li>
+                      <li><a th:href="@{/abattements}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Liste</a></li>
+                    </ul>
+                </li>		
+				<li class="">
+                    <a th:href="@{/parametres}">
+                      <i data-feather="inbox"></i>
+                      <span>Paramètres</span>
+                    </a>					
+                </li>
+				<li class="">
+                    <a th:href="@{/garanties}">
+                      <i data-feather="inbox"></i>
+                      <span>Garanties</span>
+                    </a>					
+                </li>				 				 
+			  </ul>
+		  </div>
+		</div>
+    </section>
+  </aside>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+	  <div class="container-full">
+		<!-- Content Header (Page header) -->	  
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="me-auto">
+					<h4 class="page-title">Startup</h4>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Abattements</li>
+								<li class="breadcrumb-item active" aria-current="page">Liste</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- Main content -->
+		<section class="content">
+		  <div class="row">
+			<div class="col-xl-12 col-lg-9 col-12">
+				<div class="box">
+					<div class="box-header with-border">						
+						<h4 class="box-title col-xl-10">Liste Abattements </h4>
+						<a th:href="@{/abattement}" class="btn btn-sm btn-primary col-xl-2 float-end">Nouveau Abattement</a>
+						<h6 class="box-subtitle">Export Invoice List to Copy, CSV, Excel, PDF & Print</h6>
+					</div>
+					<div class="box-body">						
+						<div class="table-responsive">
+
+							<table id="example" class="table table-lg invoice-archive">
+								<thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Date</th>
+                                        <th>Journée</th>
+                                        <th>N°OP</th>
+                                        <th>Vente</th>
+                                        <th>Paiement</th>
+                                        <th class="col-1">SoldeAVerser</th>
+                                        <th>Paramètres</th>
+                                        <th>Reg</th>
+                                        <th>NonReg</th>
+                                        <th>Total</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+								</thead>
+								<tbody >
+                                    <tr data-ng-repeat="abattement in listeAbattements track by $index">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{abattement.date}}</td>
+                                        <td>{{abattement.journee}}</td>
+                                        <td>{{abattement.client.numeroOp}}</td>
+                                        <td>{{abattement.vente}}</td>
+                                        <td>{{abattement.paiement}}</td>
+                                        <td >{{abattement.soldeAVerser}}</td>
+                                        <td class="col-3 ">
+											<span ng-repeat="ap in abattement.listeAbattementParametres">
+												<a  ng-click="showParametre(ap)" ng-if="ap.montantAbattement" href="#"  class="mb-1 badge badge-success">
+													{{ ap.parametre.titre }}
+												</a>
+											</span>
+										</td>
+                                        <td>{{abattement.reg}}</td>
+                                        <td>{{abattement.nonReg}}</td>
+                                        <td>{{abattement.total}}</td>
+                                        <td class="text-center">
+											<div class="list-icons d-inline-flex">
+												<a href="#" class="list-icons-item btn btn-primary btn m-5" ng-click="findAbattementById(abattement.id)"><i class="fa fa-edit"></i></a>
+												<a href="#" class="list-icons-item btn btn-danger m-5" ng-click="deleteAbattement(abattement.id)"><i class="fa fa-trash"></i></a>
+												
+											</div>
+										</td>
+									</tr> 
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		  </div>
+		</section>
+		<!-- /.content -->
+	  </div>
+  </div>
+  <!-- /.content-wrapper -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<form action="#" method="POST" enctype="multipart/form-data">
+
+				<div class="modal-header">
+					<h4 class="modal-title">Détails du parametre <span class="text-danger">{{abattementParametre.parametre.titre}}</span> </h4>
+					<button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
+				</div>
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<div class="row mb-3">
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="titre" type="text" class="form-control"  id="titre" placeholder="Titre" required  ng-disabled="true"  ng-model="abattementParametre.parametre.titre"  autofocus>
+								<label for="titre">Titre</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="type" type="text" class="form-control"  id="type" placeholder="type" required  ng-disabled="true"  ng-model="abattementParametre.parametre.type"  autofocus>
+								<label for="type">Type</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="taux" type="text" class="form-control"  id="taux" placeholder="Taux" required  ng-disabled="true"  ng-model="abattementParametre.parametre.taux"  autofocus>
+								<label for="taux">Taux</label>
+							</div>
+						</div>
+						
+					</div>
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="valeur" type="text" class="form-control"  id="valeur" placeholder="valeur" required  ng-disabled="true"  ng-model="abattementParametre.valeur"  autofocus>
+								<label for="type">Valeur </label>
+
+							</div>
+						</div>
+				
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="montantAbattement" type="number" class="form-control  "  id="montantAbattement" placeholder="Valeur appliqué" required  ng-disabled="true"  ng-model="abattementParametre.montantAbattement"  autofocus>
+								<label for="montantAbattement">Montant Abattement</label>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer col-md-12">
+					<button type="button" class="btn btn-success" data-dismiss="modal" ng-click="modalHide()">OK</button>
+				</div>
+
+			</div>
+			</form>
+			</div>
+		</div>
+	</div>
+
+ 
+
+</div>
+<!-- ./wrapper -->
+
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<form action="#" method="POST" enctype="multipart/form-data">
+
+			<div class="modal-header">
+				<h4 class="modal-title">Détails du paramètre d'abattement : {{parametre.titre}}</h4>
+				<button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
+			</div>
+			<!-- Modal Body -->
+			<div class="modal-body">
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input requiredng-disabled="true"  ng-model="agenceMasterDTO.nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
+								<label for="nom">Nom</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input requiredng-disabled="true"  ng-model="agenceMasterDTO.adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
+								<label for="adresse">Adresse</label>
+							</div>
+						</div>
+					</div>
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input requiredng-disabled="true"  ng-model="agenceMasterDTO.ville" name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
+								<label for="ville">Ville</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input requiredng-disabled="true"  ng-model="agenceMasterDTO.localisation" name="localisation" type="text" class="form-control" id="localisation" placeholder="Localisation">
+								<label for="localisation">Localisation</label>
+							</div>
+						</div>
+					</div>
+				
+			</div>
+
+			<!-- Modal Footer -->
+			<div class="modal-footer col-md-12">
+				<button type="button" ng-click="valider()" class="btn btn-success">Enregistrer</button>
+				<button type="reset" class="btn btn-primary" data-dismiss="modal" ng-click="modalHide()">Annuler</button>
+			</div>
+
+		</div>
+		</form>
+		</div>
+	</div>
+
+</div>
+
+	
+	<!-- Vendor JS -->
+	<script src="js/vendors.min.js"></script>
+    <script src="/js/feather.min.js"></script>	
+	<script src="/js/datatables.min.js"></script>
+	
+	<!-- Rhythm Admin App -->
+	<script src="/js/template.js"></script>
+	<script src="/js/abattementController.js"></script>
+	<script src="/js/data-table.js"></script>
+	
+	
+</body>
+</html>
