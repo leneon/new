@@ -15,6 +15,13 @@ public class GarantieDTO {
     private Double totalCommission;
 
     
+    @Override
+    public String toString() {
+        return "GarantieDTO [id=" + id + ", fromDate=" + fromDate + ", toDate=" + toDate + ", agence=" + agence
+                + ", client=" + client + ", totalSales=" + totalSales + ", commissionOnSales=" + commissionOnSales
+                + ", totalPayements=" + totalPayements + ", commissionOnPayements=" + commissionOnPayements
+                + ", totalCommission=" + totalCommission + "]";
+    }
     public GarantieDTO() {
     }
     public Long getId() {

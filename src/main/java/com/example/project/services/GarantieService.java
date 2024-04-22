@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.project.dto.GarantieDTO;
 import com.example.project.entities.Agence;
 import com.example.project.entities.Client;
 import com.example.project.entities.Garantie;
@@ -52,6 +53,11 @@ public class GarantieService {
 
     public List<Garantie> listeGaranties() {
         return garantieRepository.findAll();
+    }
+
+    public List<GarantieDTO> saveAll(List<Garantie> garanties) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'saveAll'");
     }
 
     // @Transactional

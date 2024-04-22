@@ -101,13 +101,16 @@ App.controller('garantieController', ['$scope', '$http', function ($scope, $http
                 var rowData = jsonData[i];
                
                 var garantieData = {
-                    fromDate: rowData[1], 
-                    toDate: rowData[2], 
-                    agence: rowData[3], 
-                    commissionOnSales: rowData[4], 
-                    totalPayements: rowData[5], 
-                    commissionOnPayements: rowData[6] ,
-                    totalCommission: rowData[7] 
+                    fromDate: new Date(rowData[0]), 
+                    toDate: new Date(rowData[1]), 
+                    agence: rowData[2], 
+                    bankCode: rowData[3], 
+                    client: rowData[4], 
+                    totalSales: parseFloat(rowData[5]), 
+                    commissionOnSales: parseFloat(rowData[6]), 
+                    totalPayements: parseFloat(rowData[7]), 
+                    commissionOnPayements: parseFloat(rowData[8]) ,
+                    totalCommission: parseFloat(rowData[9]) 
                 };  
                 $scope.garanties.push(garantieData);
             }
