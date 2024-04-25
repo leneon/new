@@ -203,6 +203,8 @@
                                         <th>Date début</th>
                                         <th>Date fin</th>
                                         <th>Agence</th>
+                                        <th>BankCode</th>
+                                        <th>Client</th>
                                         <th>Ventes</th>
                                         <th>Commission Ventes</th>
                                         <th>Payements</th>
@@ -212,19 +214,37 @@
 									</tr>
 								</thead>
 								<tbody  >
-									<!-- <tr ng-repeat="garantie in listegaranties track by $index">
+									<tr ng-repeat="garantie in listeGaranties track by $index">
 										<td> {{ $index+1 }} </td>
 										<td>
-											{{ garantie.nom }}
+											{{ garantie.fromDate }}
 										</td>
 										<td>
-											{{ garantie.adresse }}
+											{{ garantie.toDate }}
 										</td>
 										<td>
-											{{ garantie.ville }}
+											{{ garantie.agence.nom }}
 										</td>
 										<td>
-											{{ garantie.localisation }}
+											{{ garantie.bankCode }}
+										</td>
+										<td>
+											{{ garantie.client.numeroOp }}
+										</td>
+										<td>
+											{{ garantie.totalSales }}
+										</td>
+										<td>
+											{{ garantie.commissionOnSales }}
+										</td>
+										<td>
+											{{ garantie.totalPayments }}
+										</td>
+										<td>
+											{{ garantie.commissionOnPayments }}
+										</td>
+										<td>
+											{{ garantie.totalCommissions }}
 										</td>
 										<td class="text-center">
 											<div class="list-icons d-inline-flex">
@@ -233,7 +253,7 @@
 												
 											</div>
 										</td>
-									</tr> -->
+									</tr> 
 								</tbody>
 							</table>
 

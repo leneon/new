@@ -82,24 +82,30 @@ App.controller('garantieController', ['$scope', '$http', function ($scope, $http
     };
 
     
-    $scope.importExcel = function(){
+    $scope.importExcel = function () {
         var fileInput = document.getElementById('excelFile');
         var file = fileInput.files[0];
         var reader = new FileReader();
-
+    
         reader.onload = function (e) {
             var data = new Uint8Array(e.target.result);
             var workbook = XLSX.read(data, { type: 'array' });
-
+    
             // Récupérer la première feuille de calcul
             var sheetName = workbook.SheetNames[0];
             var sheet = workbook.Sheets[sheetName];
-
+    
             // Convertir les données de la feuille de calcul en format JSON
             var jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-            for (var i = 1; i < jsonData.length; i++) {
+            
+            for (var i = 2; i < jsonData.length; i++) {
                 var rowData = jsonData[i];
-               
+                
+                // Skip empty rows
+                if (rowData.every(cell => cell === null || cell === '')) {
+                    continue;
+                }
+    
                 var garantieData = {
                     fromDate: new Date(rowData[0]), 
                     toDate: new Date(rowData[1]), 
@@ -109,7 +115,7 @@ App.controller('garantieController', ['$scope', '$http', function ($scope, $http
                     totalSales: parseFloat(rowData[5]), 
                     commissionOnSales: parseFloat(rowData[6]), 
                     totalPayements: parseFloat(rowData[7]), 
-                    commissionOnPayements: parseFloat(rowData[8]) ,
+                    commissionOnPayements: parseFloat(rowData[8]), 
                     totalCommission: parseFloat(rowData[9]) 
                 };  
                 $scope.garanties.push(garantieData);
@@ -117,23 +123,24 @@ App.controller('garantieController', ['$scope', '$http', function ($scope, $http
             
             console.log($scope.garanties);
     
-        // Envoyer les données JSON dans la requête POST
-        $http.post(urlImportgaranties, $scope.garanties)
-            .then(
-                function (res) {
-                    console.log("garantie CREE : ", res.data);
-                    $scope.loadgaranties();
-                    fileInput = null;
-                    $scope.successSwal("Importations efectué avec succès");
-                },
-                function (error) {
-                    console.log("ERREUR D'IMPORTATION : ", error);
-                }
-        )}
+            // Envoyer les données JSON dans la requête POST
+            $http.post(urlImportgaranties, $scope.garanties)
+                .then(
+                    function (res) {
+                        console.log("garantie CREE : ", res.data);
+                        $scope.loadgaranties();
+                        fileInput = null;
+                        $scope.successSwal("Importations efectué avec succès");
+                    },
+                    function (error) {
+                        console.log("ERREUR D'IMPORTATION : ", error);
+                    }
+            );
+        };
     
-
         reader.readAsArrayBuffer(file);
     };
+    
 
 
     // Fonction pour supprimer une garantie

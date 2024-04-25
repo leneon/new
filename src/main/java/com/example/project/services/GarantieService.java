@@ -2,18 +2,7 @@ package com.example.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import org.springframework.transaction.annotation.Transactional;
-
-import com.example.project.dto.GarantieDTO;
-import com.example.project.entities.Agence;
-import com.example.project.entities.Client;
 import com.example.project.entities.Garantie;
 import com.example.project.repositories.GarantieRepository;
 
@@ -55,36 +44,8 @@ public class GarantieService {
         return garantieRepository.findAll();
     }
 
-    public List<GarantieDTO> saveAll(List<Garantie> garanties) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveAll'");
+    public List<Garantie> saveAll(List<Garantie> garanties) {
+        return garantieRepository.saveAll(garanties);
     }
 
-    // @Transactional
-    // public void importerGarantiesDepuisExcel(MultipartFile file) throws IOException {
-    //     try {
-    //         Workbook workbook = WorkbookFactory.create(file.getInputStream());
-    //         Sheet sheet = workbook.getSheetAt(0);
-
-    //         for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-    //             Row row = sheet.getRow(i);
-    //             if (row != null) {
-    //                 Garantie garantie = mapRowToGarantie(row);
-    //                 garantieRepository.save(garantie);
-    //             }
-    //         }
-
-    //         workbook.close();
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
-
-    // private Garantie mapRowToGarantie(Row row) {
-    //     Garantie garantie = new Garantie();
-    //     garantie.setFromDate(row.getCell(0).getDateCellValue());
-    //     garantie.setToDate(row.getCell(1).getDateCellValue());
-    //     // Map other attributes accordingly based on your Excel file format
-    //     return garantie;
-    // }
 }

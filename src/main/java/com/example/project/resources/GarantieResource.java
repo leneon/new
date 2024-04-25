@@ -11,7 +11,6 @@ import com.example.project.repositories.ClientRepository;
 import com.example.project.services.GarantieService;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -53,7 +52,7 @@ public class GarantieResource {
     }
 
     @PostMapping("/import")
-    public List<GarantieDTO> importGaranties(@RequestBody List<GarantieDTO>garantieDTO) {
+    public List<Garantie> importGaranties(@RequestBody List<GarantieDTO>garantieDTO) {
         List<Garantie> garanties = mappedEntity(garantieDTO);
         
         return garantieService.saveAll(garanties);
@@ -63,8 +62,8 @@ public class GarantieResource {
         List<Garantie> garanties = new ArrayList<>();
         for (GarantieDTO garantieDTO : garantieDTOs) {
             System.out.println(garantieDTO.toString());
-            // Garantie garantie = mapGarantieDTOToGarantie(garantieDTO);
-            // garanties.add(garantie);
+            Garantie garantie = mapGarantieDTOToGarantie(garantieDTO);
+            garanties.add(garantie);
         }
         return garanties;
     }
@@ -77,6 +76,7 @@ public class GarantieResource {
         garantie.setAgence(agenceRepository.findByCode(garantieDTO.getAgence()));
         garantie.setClient(clientRepository.findClient(garantieDTO.getClient()));
         garantie.setTotalSales(garantieDTO.getTotalSales());
+        garantie.setBankCode(garantieDTO.getBankCode());
         garantie.setCommissionOnSales(garantieDTO.getCommissionOnSales());
         garantie.setTotalPayements(garantieDTO.getTotalPayements());
         garantie.setCommissionOnPayements(garantieDTO.getCommissionOnPayements());

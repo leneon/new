@@ -22,6 +22,8 @@ public class Garantie {
     private  Date fromDate;
     @Column
     private  Date toDate;
+    @Column(name="bank_code", nullable = true)
+    private  String bankCode;
     @ManyToOne
     @JoinColumn(name = "agence_id")
     private Agence agence;
@@ -30,13 +32,13 @@ public class Garantie {
     private Client client;
     @Column(name="total_sales")
     private double totalSales;
-    @Column(name="commission_on_sales")
+    @Column(name="commission_on_sales", nullable = true)
     private Double commissionOnSales;
     @Column(name="total_payements")
     private Double totalPayements;
-    @Column(name="commission_on_payements")
+    @Column(name="commission_on_payements", nullable = true)
     private Double commissionOnPayements;
-    @Column(name="total_commission")
+    @Column(name="total_commission", nullable = true)
     private Double totalCommission;
     public Long getId() {
         return id;
@@ -95,8 +97,15 @@ public class Garantie {
     public Double getTotalCommission() {
         return totalCommission;
     }
+    
     public void setTotalCommission(Double totalCommission) {
         this.totalCommission = totalCommission;
+    }
+    public String getBankCode() {
+        return bankCode;
+    }
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
     }
 
 
