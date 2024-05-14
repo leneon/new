@@ -30,7 +30,6 @@ public class AgenceResource {
 
     @PostMapping("/create")
     public Agence createAgence(@RequestBody Agence agence) {
-        System.out.println("agence : "+agence);
         return agenceService.createAgence(agence);
     }
 

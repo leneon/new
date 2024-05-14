@@ -73,12 +73,7 @@ public class ClientDTO {
         this.datecreation = datecreation;
     }
 
-    @Override
-    public String toString() {
-        return "ClientDTO [id=" + id + ", numeroOp=" + numeroOp + ", banque=" + banque + ", zone=" + zone
-                + ", localite=" + localite + ", agence=" + agence + ", caisse=" + caisse + ", datecreation="
-                + datecreation + "]";
-    }
+   
     
 
 }

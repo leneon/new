@@ -8,11 +8,7 @@ public class AgenceDTO {
     private String ville;
     private String localisation;
 
-    @Override
-    public String toString() {
-        return "AgenceDTO [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", ville=" + ville + ", localisation="
-                + localisation + "]";
-    }
+   
     public AgenceDTO(Long id, String nom, String adresse, String ville, String localisation) {
         this.id = id;
         this.nom = nom;

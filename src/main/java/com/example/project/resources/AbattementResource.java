@@ -55,7 +55,6 @@ public class AbattementResource {
 
     @PostMapping("/create")
     public Abattement createAbattement(@RequestBody AbattementObjectDTO abattementObjectDTO) {
-        System.out.println("\n\n"+abattementObjectDTO.toString()+"\n\n");
 
         Abattement abattement = abattementService.createAbattement(this.setAbattement(abattementObjectDTO));
         if(abattement!=null){

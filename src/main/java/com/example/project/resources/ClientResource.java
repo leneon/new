@@ -43,7 +43,6 @@ public class ClientResource {
 
     @PostMapping("/create")
     public Client createClient(@RequestBody Client client) {
-        System.out.println("client : " + client);
         return clientService.createClient(client);
     }
 

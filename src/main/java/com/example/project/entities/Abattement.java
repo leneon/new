@@ -14,9 +14,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="abattements")
+@Table(name = "abattements")
 public class Abattement {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

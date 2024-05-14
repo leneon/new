@@ -85,14 +85,7 @@ public class GarantieDTO {
     public void setBankCode(String bankCode) {
         this.bankCode = bankCode;
     }
-    @Override
-    public String toString() {
-        return "GarantieDTO [id=" + id + ", fromDate=" + fromDate + ", toDate=" + toDate + ", agence=" + agence
-                + ", client=" + client + ", totalSales=" + totalSales + ", commissionOnSales=" + commissionOnSales
-                + ", totalPayements=" + totalPayements + ", commissionOnPayements=" + commissionOnPayements
-                + ", totalCommission=" + totalCommission + ", bankCode=" + bankCode + "]";
-    }
-
+   
     
      
 

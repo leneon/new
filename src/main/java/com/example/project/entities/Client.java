@@ -8,9 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="clients")
+@Table(name = "clients", uniqueConstraints = { @UniqueConstraint(columnNames = {"numero_op"})})
 public class Client {
     public Client(long id) {
         this.id = id;
@@ -122,11 +123,6 @@ public class Client {
         this.agence = agence;
     }
 
-    @Override
-    public String toString() {
-        return "Client [id=" + id + ", numeroOp=" + numeroOp + ", banque=" + banque + ", zone=" + zone + ", localite="
-                + localite + ", caisse=" + caisse + ", datecreation=" + datecreation + ", agence=" + agence + "]";
-    }
-    
+  
 
 }

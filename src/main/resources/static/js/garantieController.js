@@ -113,7 +113,7 @@ App.controller('garantieController', ['$scope', '$http', function ($scope, $http
                     bankCode: rowData[3], 
                     client: rowData[4], 
                     totalSales: parseFloat(rowData[5]), 
-                    commissionOnSales: parseFloat(rowData[6]), 
+                    commissionOnSales:   parseFloat(rowData[6]), 
                     totalPayements: parseFloat(rowData[7]), 
                     commissionOnPayements: parseFloat(rowData[8]), 
                     totalCommission: parseFloat(rowData[9]) 

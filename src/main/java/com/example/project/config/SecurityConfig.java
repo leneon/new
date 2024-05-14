@@ -1,39 +1,53 @@
-// package com.example.project.config;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.context.annotation.Configuration;
-// import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-// import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-// import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-// import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+package com.example.project.config;
 
-// @Configuration
-// @EnableWebSecurity
-// public class SecurityConfig extends WebSecurityConfigurerAdapter {
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
-// 	@Override
-// 	protected void configure(HttpSecurity http) throws Exception {
-// 		http
-// 			.authorizeRequests()
-// 				.antMatchers("/css/**", "/index").permitAll()		
-// 				.antMatchers("/user/**").hasRole("USER")	
-// 				.antMatchers("/public/**").permitAll() // Autoriser l'accès à ces URLs sans authentification
-//                 .anyRequest().authenticated() // Toutes les autres URLs nécessitent une authentification
-// 				.and()
-// 			.formLogin() // Activer la connexion basée sur le formulaire
-//                 .loginPage("/login") // Page de connexion personnalisée
-//                 .permitAll() // Autoriser l'accès à la page de connexion sans authentification
-//             	.and()
-//             .logout() // Activer la déconnexion
-//                 .logoutUrl("/logout")
-//                 .permitAll(); // Autoriser l'accès à la déconnexion sans authentification
-    
-// 	}
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
 
-// 	@Autowired
-// 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-// 		auth
-// 			.inMemoryAuthentication()
-// 				.withUser("user").password("password").roles("USER");
-// 	}
-// }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/**","/public/**","/css/**","/js/**","/images/**","/assets/**","/agences").permitAll()  // Allow access to public URLs
+
+                .anyRequest().authenticated()              // Authenticate all other requests
+            )
+            .formLogin(form -> form
+                .loginPage("/login")
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .permitAll()
+            );
+
+        return http.build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+        // Example with in-memory user details manager
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withUsername("user")
+                .password(passwordEncoder.encode("password"))
+                .roles("USER")
+                .build());
+        return manager;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
