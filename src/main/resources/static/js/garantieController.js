@@ -128,7 +128,7 @@ App.controller('garantieController', ['$scope', '$http', function ($scope, $http
                 .then(
                     function (res) {
                         console.log("garantie CREE : ", res.data);
-                        $scope.loadgaranties();
+                        $scope.loadGaranties();
                         fileInput = null;
                         $scope.successSwal("Importations efectué avec succès");
                     },
